@@ -1,0 +1,23 @@
+---
+
+import Title3 from "../../../shared/Title3.astro";
+import LazyImage from "../../../shared/LazyImage.astro";
+
+export interface Props {
+  quote: string;
+}
+
+const {quote } = Astro.props;
+
+---
+
+<div
+  class="flex w-full max-w-[26rem] flex-col rounded-xl dark:bg-base-dark-800 shadow-lg dark:shadow-dark ring-1 ring-black/5"
+>
+ 
+  <div class="p-4">
+    <p class="block font-sans font-light leading-relaxed italic">
+      {quote}
+    </p>
+  </div>
+</div>

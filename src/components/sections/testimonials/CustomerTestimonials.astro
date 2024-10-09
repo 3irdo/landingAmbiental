@@ -1,0 +1,71 @@
+---
+import Container from "../../shared/Container.astro";
+import GradiantText from "../../shared/GradiantText.astro";
+import SubTitle2 from "../../shared/SubTitle2.astro";
+import Title2 from "../../shared/Title2.astro";
+import Title3 from "../../shared/Title3.astro";
+import Title from "../../shared/Title.astro";
+import Testimonial from "./components/Testimonial.astro";
+import { testimonialsSection } from "./data.ts";
+import Paragraph from "../../shared/Paragraph.astro";
+import CardImg from "../../shared/CardImg.astro";
+
+export interface Props {
+  className?: string;
+}
+
+const { className } = Astro.props;
+---
+
+<section id="about" class=`${className}`>
+  <Container
+    className="mx-auto flex flex-col items-center justify-center text-center"
+  >
+    <Title2>{testimonialsSection.title}</Title2>
+
+    <SubTitle2>
+      <GradiantText> {testimonialsSection.titleAbout}</GradiantText><br />
+    </SubTitle2>
+
+    <div
+      class="max-w-md mx-auto w-11/12 flex-1 flex midmd:w-7/12 lg:w-1/2 flex-col"
+    >
+      <Paragraph>{testimonialsSection.aboutParagraph}</Paragraph>
+    </div>
+  </Container>
+  <Container className="flex flex-col items-center">
+    <div
+      class="mt-8 flex flex-col gap-8 midmd:flex-row text-heading-3 font-medium"
+    >
+      {
+        testimonialsSection.testimonials.map((testimonial) => {
+          return <Testimonial quote={testimonial.quote} />;
+        })
+      }
+    </div>
+  </Container>
+
+  <Container
+    className="mx-auto mt-8 flex flex-col items-center justify-center text-center"
+  >
+
+  <!-- <div>
+    <div>
+      <Title3 className="text-5xl"><GradiantText>{testimonialsSection.subheading1_1}</GradiantText></Title3>
+      <Paragraph>{testimonialsSection.mision}</Paragraph>
+    </div>
+
+    <div class="mt-12">
+      <Title3 className="text-5xl"><GradiantText>{testimonialsSection.subheading1_2}</GradiantText></Title3>
+      <Paragraph className="pl-12">{testimonialsSection.vision}</Paragraph>
+    </div>
+  </div> -->
+
+
+    <>
+      {testimonialsSection.cards.map((card)=>(
+        <CardImg cardTitle={card.title} cardP={card.p}></CardImg>
+      ))}
+    </>
+  </Container>
+</section>
